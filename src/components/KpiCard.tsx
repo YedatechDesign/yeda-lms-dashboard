@@ -60,7 +60,7 @@ export default function KpiCard({ label, value, trend, positive, icon }: KpiCard
         alignItems: 'center',
         gap: 4,
         fontSize: 12,
-        color: positive ? '#16a34a' : '#dc2626',
+        color: positive ? '#079DED' : '#CA5369',
         fontWeight: 500,
       }}>
         {positive ? <TrendingUp size={13} /> : <TrendingDown size={13} />}

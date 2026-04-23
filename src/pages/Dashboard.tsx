@@ -34,7 +34,7 @@ export default function Dashboard() {
         <KpiCard label="סה״כ יחידות למידה"   value={globalStats.totalLearningUnits.toString()} icon={<FileText size={18}/>} color="#F08700" />
         <KpiCard label="אחוז נוכחות כללי"    value={`${globalStats.attendanceRate}%`}   icon={<TrendingUp size={18}/>} color="#0A59EB" highlight />
         <KpiCard label="אחוז צפייה בתכנים"   value={`${globalStats.viewingRate}%`}      icon={<Eye size={18}/>}        color="#CA5369" highlight />
-        <KpiCard label="אחוז הצלחה כללי"     value={`${globalStats.passRate}%`}         icon={<Award size={18}/>}      color="#16a34a" highlight />
+        <KpiCard label="אחוז הצלחה כללי"     value={`${globalStats.passRate}%`}         icon={<Award size={18}/>}      color="#079DED" highlight />
       </div>
 
       {/* Bottom row */}
@@ -89,7 +89,7 @@ export default function Dashboard() {
                   <div style={{ fontSize: 11, color: 'var(--text-secondary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{u.email}</div>
                 </div>
                 <div style={{ textAlign: 'left', flexShrink: 0 }}>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: '#16a34a' }}>{u.percentage}%</div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: '#079DED' }}>{u.percentage}%</div>
                   <div style={{ fontSize: 11, color: 'var(--text-secondary)' }}>{u.attended}/{u.total}</div>
                 </div>
               </div>

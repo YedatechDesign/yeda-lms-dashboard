@@ -98,8 +98,8 @@ export default function Attendance() {
                       <td style={{ ...td, fontWeight: 500, color: 'var(--primary-dark)' }}>{s.courseName}</td>
                       <td style={td}>{s.sessionName}</td>
                       <td style={{ ...td, textAlign: 'center' }}>{s.registered}</td>
-                      <td style={{ ...td, textAlign: 'center', color: '#16a34a', fontWeight: 600 }}>{s.attended}</td>
-                      <td style={{ ...td, textAlign: 'center', color: '#dc2626', fontWeight: 600 }}>{s.absent}</td>
+                      <td style={{ ...td, textAlign: 'center', color: '#079DED', fontWeight: 600 }}>{s.attended}</td>
+                      <td style={{ ...td, textAlign: 'center', color: '#CA5369', fontWeight: 600 }}>{s.absent}</td>
                       <td style={td}>
                         <PctBar value={s.attendancePercent} />
                       </td>
@@ -126,10 +126,10 @@ export default function Attendance() {
                   <div key={c.id}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 5, fontSize: 13 }}>
                       <span style={{ fontWeight: 500, color: 'var(--primary-dark)' }}>{c.name}</span>
-                      <span style={{ color: pct < 50 ? '#dc2626' : pct < 70 ? 'var(--accent)' : '#16a34a', fontWeight: 600 }}>{pct}%</span>
+                      <span style={{ color: pct < 50 ? '#CA5369' : pct < 70 ? 'var(--accent)' : '#079DED', fontWeight: 600 }}>{pct}%</span>
                     </div>
                     <div style={{ height: 6, background: 'var(--primary-light)', borderRadius: 3, overflow: 'hidden' }}>
-                      <div style={{ height: '100%', width: `${pct}%`, background: pct < 50 ? '#dc2626' : pct < 70 ? 'var(--accent)' : 'var(--primary)', borderRadius: 3 }} />
+                      <div style={{ height: '100%', width: `${pct}%`, background: pct < 50 ? '#CA5369' : pct < 70 ? 'var(--accent)' : 'var(--primary)', borderRadius: 3 }} />
                     </div>
                   </div>
                 );
@@ -158,7 +158,7 @@ export default function Attendance() {
                     <td style={{ ...td, color: 'var(--text-secondary)', fontSize: 12 }}>{u.email}</td>
                     <td style={td}><span style={{ padding: '2px 8px', borderRadius: 20, background: 'var(--primary-light)', color: 'var(--primary)', fontSize: 11, fontWeight: 500 }}>{u.courseName}</span></td>
                     <td style={{ ...td, textAlign: 'center' }}>{u.watched}/{u.total}</td>
-                    <td style={{ ...td, textAlign: 'center', color: '#dc2626', fontWeight: 700 }}>{u.percentage}%</td>
+                    <td style={{ ...td, textAlign: 'center', color: '#CA5369', fontWeight: 700 }}>{u.percentage}%</td>
                     <td style={td}><span style={{ fontSize: 11, color: 'var(--text-secondary)' }}>המשתמש אינו צופה בתכני הקורס באופן סדיר. מומלץ לשלוח תזכורת אישית.</span></td>
                   </tr>
                 ))}
@@ -190,7 +190,7 @@ function LowAttendanceCard() {
               <div style={{ fontWeight: 600, fontSize: 13, color: 'var(--primary-dark)' }}>{u.name}</div>
               <div style={{ fontSize: 11, color: 'var(--text-secondary)' }}>{u.email}</div>
             </div>
-            <div style={{ fontSize: 15, fontWeight: 700, color: '#dc2626' }}>{u.percent}%</div>
+            <div style={{ fontSize: 15, fontWeight: 700, color: '#CA5369' }}>{u.percent}%</div>
           </div>
         ))}
       </div>

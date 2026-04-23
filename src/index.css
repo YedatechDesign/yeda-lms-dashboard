@@ -47,3 +47,14 @@ body {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--primary-bg); }
 ::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 3px; }
+
+/* Print / PDF export */
+@media print {
+  @page { margin: 16mm; size: A4 landscape; }
+  body { background: #fff !important; direction: rtl; font-family: 'Rubik', sans-serif; }
+  aside, header button, .no-print { display: none !important; }
+  header { position: static !important; box-shadow: none !important; border-bottom: 1px solid #E3ECFD; }
+  main { padding: 0 !important; }
+  * { box-shadow: none !important; }
+  div[style*="overflow: hidden"], div[style*="overflow:hidden"] { overflow: visible !important; }
+}

@@ -1,9 +1,9 @@
 import { studentData } from '../data';
 
 const statusStyle: Record<string, { bg: string; color: string; dot: string }> = {
-  נוכח: { bg: 'rgba(22,163,74,0.1)', color: '#16a34a', dot: '#16a34a' },
+  נוכח: { bg: 'rgba(7,157,237,0.1)', color: '#079DED', dot: '#079DED' },
   חלקי: { bg: 'var(--accent-light)', color: '#b45309', dot: 'var(--accent)' },
-  נעדר: { bg: 'rgba(220,38,38,0.08)', color: '#dc2626', dot: '#dc2626' },
+  נעדר: { bg: 'rgba(202,83,105,0.08)', color: '#CA5369', dot: '#CA5369' },
 };
 
 export default function StudentTable() {
@@ -97,7 +97,7 @@ export default function StudentTable() {
                     <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)', width: 32, textAlign: 'left' }}>{pct}%</span>
                   </div>
                 </td>
-                <td style={{ ...td, textAlign: 'center', fontWeight: 700, color: s.score >= 80 ? '#16a34a' : s.score >= 60 ? 'var(--accent)' : '#dc2626' }}>
+                <td style={{ ...td, textAlign: 'center', fontWeight: 700, color: s.score >= 80 ? '#079DED' : s.score >= 60 ? 'var(--accent)' : '#CA5369' }}>
                   {s.score}
                 </td>
                 <td style={{ ...td, textAlign: 'center' }}>

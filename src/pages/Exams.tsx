@@ -86,10 +86,10 @@ export default function Exams() {
                     </td>
                     <td style={{ ...td, color: 'var(--text-secondary)', fontSize: 12 }}>{e.courseName}</td>
                     <td style={{ ...td, textAlign: 'center' }}>{e.totalUsers}</td>
-                    <td style={{ ...td, textAlign: 'center', color: '#16a34a', fontWeight: 600 }}>{e.passed}</td>
-                    <td style={{ ...td, textAlign: 'center', color: '#dc2626', fontWeight: 600 }}>{e.failed}</td>
+                    <td style={{ ...td, textAlign: 'center', color: '#079DED', fontWeight: 600 }}>{e.passed}</td>
+                    <td style={{ ...td, textAlign: 'center', color: '#CA5369', fontWeight: 600 }}>{e.failed}</td>
                     <td style={td}><PassBar value={e.passRate} /></td>
-                    <td style={{ ...td, textAlign: 'center', fontWeight: 700, color: e.averageScore >= 75 ? '#16a34a' : e.averageScore >= 60 ? 'var(--accent)' : '#dc2626' }}>{e.averageScore}</td>
+                    <td style={{ ...td, textAlign: 'center', fontWeight: 700, color: e.averageScore >= 75 ? '#079DED' : e.averageScore >= 60 ? 'var(--accent)' : '#CA5369' }}>{e.averageScore}</td>
                   </tr>
                 ))}
               </tbody>
@@ -141,7 +141,7 @@ export default function Exams() {
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {selectedQuestions.map((q, i) => {
-                  const color = q.successRate >= 80 ? '#16a34a' : q.successRate >= 40 ? '#F08700' : '#dc2626';
+                  const color = q.successRate >= 80 ? '#079DED' : q.successRate >= 40 ? '#F08700' : '#CA5369';
                   const difficulty = q.successRate >= 80 ? 'שאלה קלה' : q.successRate < 40 ? 'שאלה מאתגרת - רוב המשתמשים נכשלים' : 'רמת קושי בינונית';
                   return (
                     <div key={i} style={{ padding: '14px 16px', background: 'var(--primary-bg)', borderRadius: 10, border: `1px solid ${color}30` }}>
@@ -168,7 +168,7 @@ export default function Exams() {
 }
 
 function PassBar({ value }: { value: number }) {
-  const color = value >= 75 ? '#16a34a' : value >= 60 ? '#F08700' : '#dc2626';
+  const color = value >= 75 ? '#079DED' : value >= 60 ? '#F08700' : '#CA5369';
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
       <div style={{ flex: 1, height: 5, background: 'var(--primary-light)', borderRadius: 3, overflow: 'hidden' }}>

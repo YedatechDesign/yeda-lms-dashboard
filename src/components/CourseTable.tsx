@@ -18,7 +18,7 @@ export default function CourseTable() {
   };
 
   const statusColor: Record<string, { bg: string; color: string }> = {
-    פעיל: { bg: 'rgba(22, 163, 74, 0.1)', color: '#16a34a' },
+    פעיל: { bg: 'rgba(7, 157, 237, 0.1)', color: '#079DED' },
     הסתיים: { bg: 'var(--primary-light)', color: 'var(--primary)' },
     מושהה: { bg: 'var(--accent-light)', color: 'var(--accent)' },
   };
@@ -79,7 +79,7 @@ export default function CourseTable() {
                 <td style={{ ...td, textAlign: 'center' }}>{c.enrolled}</td>
                 <td style={td}><PercentBar value={c.attendance} color="#0A59EB" /></td>
                 <td style={td}><PercentBar value={c.engagement} color="#F08700" /></td>
-                <td style={{ ...td, textAlign: 'center', fontWeight: 600, color: c.avgScore >= 80 ? '#16a34a' : c.avgScore >= 70 ? 'var(--accent)' : '#dc2626' }}>
+                <td style={{ ...td, textAlign: 'center', fontWeight: 600, color: c.avgScore >= 80 ? '#079DED' : c.avgScore >= 70 ? 'var(--accent)' : '#CA5369' }}>
                   {c.avgScore}
                 </td>
                 <td style={td}>

@@ -1,5 +1,12 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { LayoutDashboard, Users, FileText, Lightbulb, Download } from 'lucide-react';
+
+const pageLabels: Record<string, string> = {
+  '/': 'דשבורד כללי',
+  '/attendance': 'נוכחות',
+  '/exams': 'מבחנים ותרגולים',
+  '/insights': 'אינסייטים',
+};
 
 const navItems = [
   { to: '/',           label: 'דשבורד',              icon: LayoutDashboard, end: true },
@@ -9,6 +16,16 @@ const navItems = [
 ];
 
 export default function Layout() {
+  const location = useLocation();
+  const pageLabel = pageLabels[location.pathname] ?? 'דו"ח';
+
+  const handleExport = () => {
+    const original = document.title;
+    document.title = `Yeda LMS – ${pageLabel} – ${new Date().toLocaleDateString('he-IL')}`;
+    window.print();
+    document.title = original;
+  };
+
   return (
     <div style={{ display: 'flex', minHeight: '100vh', flexDirection: 'column' }}>
       {/* Top Header */}
@@ -43,7 +60,7 @@ export default function Layout() {
           דו"ח נוכחות ומעורבות
         </div>
 
-        <button style={{
+        <button onClick={handleExport} style={{
           display: 'flex', alignItems: 'center', gap: 6,
           padding: '7px 16px',
           borderRadius: 'var(--radius-pill)',

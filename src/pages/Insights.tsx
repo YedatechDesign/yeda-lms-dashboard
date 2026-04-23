@@ -4,8 +4,8 @@ import { AlertTriangle, Info, CheckCircle, XCircle, TrendingUp, TrendingDown } f
 const typeConfig = {
   warning: { bg: 'rgba(240,135,0,0.08)', border: '#F08700', icon: <AlertTriangle size={18} color="#F08700" />, label: 'אזהרה' },
   info:    { bg: 'rgba(10,89,235,0.06)', border: '#0A59EB', icon: <Info size={18} color="#0A59EB" />,           label: 'מידע'  },
-  success: { bg: 'rgba(22,163,74,0.08)', border: '#16a34a', icon: <CheckCircle size={18} color="#16a34a" />,    label: 'חיובי' },
-  danger:  { bg: 'rgba(220,38,38,0.07)', border: '#dc2626', icon: <XCircle size={18} color="#dc2626" />,        label: 'דורש טיפול' },
+  success: { bg: 'rgba(7,157,237,0.08)', border: '#079DED', icon: <CheckCircle size={18} color="#079DED" />,    label: 'חיובי' },
+  danger:  { bg: 'rgba(202,83,105,0.07)', border: '#CA5369', icon: <XCircle size={18} color="#CA5369" />,        label: 'דורש טיפול' },
 };
 
 export default function Insights() {
@@ -59,10 +59,10 @@ export default function Insights() {
         <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--primary-dark)', marginBottom: 16 }}>המלצות לפעולה מיידית</div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {[
-            { action: 'שלח תזכורות אוטומטיות ל-4 משתמשים עם נוכחות נמוכה מ-50%', priority: 'גבוה', color: '#dc2626' },
-            { action: 'שלח מייל עידוד ל-7 משתמשים שלא צופים בתכנים מוקלטים', priority: 'גבוה', color: '#dc2626' },
+            { action: 'שלח תזכורות אוטומטיות ל-4 משתמשים עם נוכחות נמוכה מ-50%', priority: 'גבוה', color: '#CA5369' },
+            { action: 'שלח מייל עידוד ל-7 משתמשים שלא צופים בתכנים מוקלטים', priority: 'גבוה', color: '#CA5369' },
             { action: 'בחן מחדש תוכן קורס "ניתוח נתונים" - שיעור הצלחה 52.6%', priority: 'בינוני', color: '#F08700' },
-            { action: 'שתף את מתודולוגיית קורס AI כמודל לקורסים אחרים', priority: 'נמוך', color: '#16a34a' },
+            { action: 'שתף את מתודולוגיית קורס AI כמודל לקורסים אחרים', priority: 'נמוך', color: '#079DED' },
           ].map(({ action, priority, color }) => (
             <div key={action} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 14px', background: 'var(--primary-bg)', borderRadius: 10 }}>
               <span style={{ padding: '2px 10px', borderRadius: 20, fontSize: 11, fontWeight: 600, background: color + '18', color, flexShrink: 0, whiteSpace: 'nowrap' }}>{priority}</span>
@@ -80,7 +80,7 @@ function MetricCard({ label, value, trend, positive }: { label: string; value: s
     <div style={{ background: 'var(--white)', borderRadius: 'var(--radius)', padding: '16px 20px', border: '1px solid var(--border)', boxShadow: 'var(--shadow-card)' }}>
       <div style={{ fontSize: 11, color: 'var(--text-secondary)', marginBottom: 6 }}>{label}</div>
       <div style={{ fontSize: 26, fontWeight: 700, color: 'var(--primary-dark)', marginBottom: 4 }}>{value}</div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 12, color: positive ? '#16a34a' : '#dc2626', fontWeight: 500 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 12, color: positive ? '#079DED' : '#CA5369', fontWeight: 500 }}>
         {positive ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
         {trend} לעומת החודש הקודם
       </div>
