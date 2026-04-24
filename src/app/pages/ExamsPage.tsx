@@ -353,7 +353,7 @@ export function ExamsPage() {
                               </div>
                             </div>
                             {/* Success rate bar */}
-                            <div className="mt-3 h-2 rounded-full bg-gray-100 overflow-hidden">
+                            <div className="mt-3 h-2 rounded-full bg-gray-100 overflow-hidden" dir="rtl">
                               <div
                                 className={`h-full rounded-full transition-all ${
                                   q.successRate >= 80

@@ -365,7 +365,7 @@ export function AttendancePage() {
                       </div>
                     </div>
                     {/* Progress bar */}
-                    <div className="mt-3 h-2 rounded-full bg-[#CA5369/10] overflow-hidden">
+                    <div className="mt-3 h-2 rounded-full bg-[#CA5369/10] overflow-hidden" dir="rtl">
                       <div
                         className="h-full rounded-full bg-[#CA5369] transition-all"
                         style={{ width: `${user.percentage}%` }}
@@ -430,7 +430,7 @@ export function AttendancePage() {
                           </span>
                         </p>
                         {/* Progress bar */}
-                        <div className="mt-2 h-2 rounded-full bg-[#F08700/10] overflow-hidden">
+                        <div className="mt-2 h-2 rounded-full bg-[#F08700/10] overflow-hidden" dir="rtl">
                           <div
                             className="h-full rounded-full bg-[#F08700] transition-all"
                             style={{ width: `${user.percentage}%` }}
