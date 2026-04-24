@@ -211,9 +211,8 @@ export function DashboardPage() {
                 className="p-4 rounded-xl border bg-white hover:shadow-md transition-all"
               >
                 <div className="flex items-start justify-between mb-2">
-                  <h4 className="text-sm text-[#000F61] leading-tight">{course.name}</h4>
                   <Badge
-                    className="mr-2 shrink-0 text-[10px]"
+                    className="ml-2 shrink-0 text-[10px]"
                     style={{
                       backgroundColor: `${COLORS[course.type]}20`,
                       color: COLORS[course.type],
@@ -223,6 +222,7 @@ export function DashboardPage() {
                   >
                     {course.type}
                   </Badge>
+                  <h4 className="text-sm text-[#000F61] leading-tight text-right">{course.name}</h4>
                 </div>
                 <p className="text-xs text-muted-foreground">
                   {course.sessions} שיעורים / מפגשים

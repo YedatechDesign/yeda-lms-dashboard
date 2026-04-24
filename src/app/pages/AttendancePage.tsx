@@ -173,14 +173,13 @@ export function AttendancePage() {
                       setExpandedCourse(isExpanded ? null : course.id)
                     }
                   >
+                    {isExpanded ? (
+                      <ChevronUp className="w-5 h-5 text-muted-foreground shrink-0" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-muted-foreground shrink-0" />
+                    )}
                     <div className="flex items-center gap-3">
-                      <div
-                        className="w-2 h-8 rounded-full"
-                        style={{
-                          backgroundColor: COLORS[course.type],
-                        }}
-                      />
-                      <div>
+                      <div className="text-right">
                         <h3 className="text-[#000F61] text-sm">{course.name}</h3>
                         <p className="text-xs text-muted-foreground">
                           {course.sessions} מפגשים |{" "}
@@ -196,12 +195,13 @@ export function AttendancePage() {
                           </Badge>
                         </p>
                       </div>
+                      <div
+                        className="w-2 h-8 rounded-full shrink-0"
+                        style={{
+                          backgroundColor: COLORS[course.type],
+                        }}
+                      />
                     </div>
-                    {isExpanded ? (
-                      <ChevronUp className="w-5 h-5 text-muted-foreground" />
-                    ) : (
-                      <ChevronDown className="w-5 h-5 text-muted-foreground" />
-                    )}
                   </button>
 
                   {isExpanded && sessions.length > 0 && (

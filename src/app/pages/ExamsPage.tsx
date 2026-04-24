@@ -304,20 +304,20 @@ export function ExamsPage() {
                       setExpandedExam(isExpanded ? null : exam.id)
                     }
                   >
+                    {isExpanded ? (
+                      <ChevronUp className="w-5 h-5 text-muted-foreground shrink-0" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-muted-foreground shrink-0" />
+                    )}
                     <div className="flex items-center gap-3">
-                      <FileCheck2 className="w-5 h-5 text-[#0A59EB]" />
-                      <div>
+                      <div className="text-right">
                         <h3 className="text-[#000F61] text-sm">{exam.name}</h3>
                         <p className="text-xs text-muted-foreground">
                           {questions.length} שאלות | ציון ממוצע: {exam.averageScore} | אחוז הצלחה: {exam.passRate}%
                         </p>
                       </div>
+                      <FileCheck2 className="w-5 h-5 text-[#0A59EB] shrink-0" />
                     </div>
-                    {isExpanded ? (
-                      <ChevronUp className="w-5 h-5 text-muted-foreground" />
-                    ) : (
-                      <ChevronDown className="w-5 h-5 text-muted-foreground" />
-                    )}
                   </button>
 
                   {isExpanded && (
