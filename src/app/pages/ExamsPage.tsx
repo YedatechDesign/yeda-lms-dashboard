@@ -92,30 +92,10 @@ export function ExamsPage() {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <MetricCard
-          title="סה״כ מבחנים"
-          value={overallMetrics.totalExams}
-          icon={FileCheck2}
-          color="#0A59EB"
-        />
-        <MetricCard
-          title="סה״כ תרגולים"
-          value={overallMetrics.totalExercises}
-          icon={ClipboardList}
-          color="#079DED"
-        />
-        <MetricCard
-          title="אחוז הצלחה כללי"
-          value={`${overallMetrics.passRate}%`}
-          icon={Award}
-          color={overallMetrics.passRate >= 70 ? "#079DED" : "#CA5369"}
-        />
-        <MetricCard
-          title="ציון ממוצע כללי"
-          value={`${overallMetrics.averageScore}`}
-          icon={Award}
-          color="#F08700"
-        />
+        <MetricCard title="סה״כ מבחנים" value={overallMetrics.totalExams} icon={FileCheck2} color="#0A59EB" vertical />
+        <MetricCard title="סה״כ תרגולים" value={overallMetrics.totalExercises} icon={ClipboardList} color="#079DED" vertical />
+        <MetricCard title="אחוז הצלחה כללי" value={`${overallMetrics.passRate}%`} icon={Award} color={overallMetrics.passRate >= 70 ? "#079DED" : "#CA5369"} vertical />
+        <MetricCard title="ציון ממוצע כללי" value={`${overallMetrics.averageScore}`} icon={Award} color="#F08700" vertical />
       </div>
 
       {/* Pass Rate Chart */}

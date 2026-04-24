@@ -47,7 +47,7 @@ const pieData = Object.entries(courseTypeBreakdown).map(([name, value]) => ({
 const topExams = examsAndExercises
   .filter((e) => e.type === "מבחן")
   .sort((a, b) => b.passRate - a.passRate)
-  .slice(0, 8)
+  .slice(0, 6)
   .map((e) => ({
     name: e.courseName.replace("מבחן ", "").slice(0, 15),
     passRate: e.passRate,
@@ -65,58 +65,18 @@ export function DashboardPage() {
 
       {/* KPI Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <MetricCard
-          title="משתמשים פעילים"
-          value={overallMetrics.activeUsers}
-          icon={Users}
-          color="#0A59EB"
-        />
-        <MetricCard
-          title="קורסים"
-          value={overallMetrics.totalCourses}
-          icon={BookOpen}
-          color="#079DED"
-        />
-        <MetricCard
-          title="לומדות"
-          value={overallMetrics.totalLearningUnits}
-          icon={Layers}
-          color="#079DED"
-        />
-        <MetricCard
-          title="מבחנים ותרגולים"
-          value={overallMetrics.totalExams + overallMetrics.totalExercises}
-          icon={GraduationCap}
-          color="#F08700"
-        />
+        <MetricCard title="משתמשים פעילים" value={overallMetrics.activeUsers} icon={Users} color="#0A59EB" vertical />
+        <MetricCard title="קורסים" value={overallMetrics.totalCourses} icon={BookOpen} color="#079DED" vertical />
+        <MetricCard title="לומדות" value={overallMetrics.totalLearningUnits} icon={Layers} color="#079DED" vertical />
+        <MetricCard title="מבחנים ותרגולים" value={overallMetrics.totalExams + overallMetrics.totalExercises} icon={GraduationCap} color="#F08700" vertical />
       </div>
 
       {/* Performance KPIs */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <MetricCard
-          title="ציון ממוצע כללי"
-          value={`${overallMetrics.averageScore}%`}
-          icon={Target}
-          color="#0A59EB"
-        />
-        <MetricCard
-          title="אחוז הצלחה כללי"
-          value={`${overallMetrics.passRate}%`}
-          icon={Trophy}
-          color={overallMetrics.passRate >= 70 ? "#079DED" : "#CA5369"}
-        />
-        <MetricCard
-          title="אחוז נוכחות כללי"
-          value={`${overallMetrics.attendanceRate}%`}
-          icon={UserCheck}
-          color="#079DED"
-        />
-        <MetricCard
-          title="צפייה בתכנים מוקלטים"
-          value={`${overallMetrics.viewingRate}%`}
-          icon={Eye}
-          color="#F08700"
-        />
+        <MetricCard title="ציון ממוצע כללי" value={`${overallMetrics.averageScore}%`} icon={Target} color="#0A59EB" vertical />
+        <MetricCard title="אחוז הצלחה כללי" value={`${overallMetrics.passRate}%`} icon={Trophy} color={overallMetrics.passRate >= 70 ? "#079DED" : "#CA5369"} vertical />
+        <MetricCard title="אחוז נוכחות כללי" value={`${overallMetrics.attendanceRate}%`} icon={UserCheck} color="#079DED" vertical />
+        <MetricCard title="צפייה בתכנים מוקלטים" value={`${overallMetrics.viewingRate}%`} icon={Eye} color="#F08700" vertical />
       </div>
 
       {/* Charts Row */}
@@ -172,31 +132,24 @@ export function DashboardPage() {
             <CardTitle className="text-[#000F61]">שיעורי הצלחה במבחנים</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="overflow-x-auto" dir="ltr">
-            <div className="min-w-[460px]">
-            <div className="h-[300px]">
+            <div className="h-[340px]" dir="ltr">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={topExams} layout="vertical" margin={{ right: 150, left: 10, top: 5, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" horizontal={false} />
-                  <XAxis type="number" domain={[0, 100]} tickFormatter={(v) => `${v}%`} />
-                  <YAxis
+                <BarChart data={topExams} margin={{ right: 10, left: 10, bottom: 70, top: 30 }}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                  <XAxis
                     dataKey="name"
-                    type="category"
-                    orientation="right"
-                    width={145}
                     tick={{ fontSize: 11, fontFamily: "'Rubik', sans-serif", fill: "#717182" }}
+                    angle={-35}
+                    textAnchor="end"
+                    interval={0}
                   />
-                  <Tooltip
-                    formatter={(value: number) => `${value}%`}
-                    labelStyle={{ fontFamily: "'Rubik', sans-serif" }}
-                  />
-                  <Bar dataKey="passRate" name="אחוז הצלחה" fill="#0A59EB" radius={[0, 4, 4, 0]} />
-                  <Bar dataKey="averageScore" name="ציון ממוצע" fill="#079DED" radius={[0, 4, 4, 0]} />
-                  <Legend />
+                  <YAxis domain={[0, 100]} tickFormatter={(v) => `${v}%`} tick={{ fontSize: 11, fill: "#717182" }} />
+                  <Tooltip formatter={(value: number) => `${value}%`} />
+                  <Legend verticalAlign="top" wrapperStyle={{ paddingBottom: 8 }} />
+                  <Bar dataKey="passRate" name="אחוז הצלחה" fill="#0A59EB" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="averageScore" name="ציון ממוצע" fill="#079DED" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
-            </div>
-            </div>
             </div>
           </CardContent>
         </Card>

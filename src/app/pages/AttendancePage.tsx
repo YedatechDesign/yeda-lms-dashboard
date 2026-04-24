@@ -89,31 +89,10 @@ export function AttendancePage() {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <MetricCard
-          title="סה״כ קורסים"
-          value={overallMetrics.totalCourses}
-          subtitle={`היברידי: ${courseTypeBreakdown["היברידי"]} | מוקלט: ${courseTypeBreakdown["מוקלט"]} | פרונטלי: ${courseTypeBreakdown["פרונטלי"]}`}
-          icon={BookOpen}
-          color="#0A59EB"
-        />
-        <MetricCard
-          title="סה״כ לומדות"
-          value={overallMetrics.totalLearningUnits}
-          icon={Eye}
-          color="#079DED"
-        />
-        <MetricCard
-          title="אחוז נוכחות כללי"
-          value={`${overallMetrics.attendanceRate}%`}
-          icon={UserCheck}
-          color="#079DED"
-        />
-        <MetricCard
-          title="צפייה בתכנים מוקלטים"
-          value={`${overallMetrics.viewingRate}%`}
-          icon={Eye}
-          color="#F08700"
-        />
+        <MetricCard title="סה״כ קורסים" value={overallMetrics.totalCourses} icon={BookOpen} color="#0A59EB" vertical />
+        <MetricCard title="סה״כ לומדות" value={overallMetrics.totalLearningUnits} icon={Eye} color="#079DED" vertical />
+        <MetricCard title="אחוז נוכחות כללי" value={`${overallMetrics.attendanceRate}%`} icon={UserCheck} color="#079DED" vertical />
+        <MetricCard title="צפייה בתכנים מוקלטים" value={`${overallMetrics.viewingRate}%`} icon={Eye} color="#F08700" vertical />
       </div>
 
       {/* Attendance by Course Chart */}
@@ -153,23 +132,11 @@ export function AttendancePage() {
       </Card>
 
       <Tabs defaultValue="sessions" className="space-y-4">
-        <TabsList className="w-full">
-          <TabsTrigger value="sessions" className="flex-1">
-            <span className="sm:hidden">מפגשים</span>
-            <span className="hidden sm:inline">נוכחות למפגשים</span>
-          </TabsTrigger>
-          <TabsTrigger value="top" className="flex-1">
-            <span className="sm:hidden">טופ 5</span>
-            <span className="hidden sm:inline">טופ 5 נוכחות</span>
-          </TabsTrigger>
-          <TabsTrigger value="low" className="flex-1">
-            <span className="sm:hidden">נמוכה</span>
-            <span className="hidden sm:inline">נוכחות נמוכה</span>
-          </TabsTrigger>
-          <TabsTrigger value="engagement" className="flex-1">
-            <span className="sm:hidden">מוקלטים</span>
-            <span className="hidden sm:inline">צפייה בתכנים מוקלטים</span>
-          </TabsTrigger>
+        <TabsList className="w-full h-auto flex-wrap gap-y-1 p-1">
+          <TabsTrigger value="sessions" className="flex-1 basis-[calc(50%-2px)] sm:basis-auto h-8 text-xs sm:text-sm">נוכחות במפגשים</TabsTrigger>
+          <TabsTrigger value="top" className="flex-1 basis-[calc(50%-2px)] sm:basis-auto h-8 text-xs sm:text-sm">טופ 5 נוכחות</TabsTrigger>
+          <TabsTrigger value="low" className="flex-1 basis-[calc(50%-2px)] sm:basis-auto h-8 text-xs sm:text-sm">נוכחות נמוכה</TabsTrigger>
+          <TabsTrigger value="engagement" className="flex-1 basis-[calc(50%-2px)] sm:basis-auto h-8 text-xs sm:text-sm">תכנים מוקלטים</TabsTrigger>
         </TabsList>
 
         {/* Sessions Attendance Tab */}
@@ -286,7 +253,7 @@ export function AttendancePage() {
         <TabsContent value="top">
           <Card>
             <CardHeader>
-              <CardTitle className="text-[#000F61] flex items-center gap-2">
+              <CardTitle className="text-[#000F61] flex items-center gap-2" dir="rtl">
                 <UserCheck className="w-5 h-5 text-[#079DED]" />
                 טופ 5 משתמשים עם נוכחות גבוהה
               </CardTitle>
@@ -341,7 +308,7 @@ export function AttendancePage() {
         <TabsContent value="low">
           <Card>
             <CardHeader>
-              <CardTitle className="text-[#000F61] flex items-center gap-2">
+              <CardTitle className="text-[#000F61] flex items-center gap-2" dir="rtl">
                 <AlertTriangle className="w-5 h-5 text-[#CA5369]" />
                 משתמשים עם נוכחות נמוכה (מתחת ל-50%)
               </CardTitle>
@@ -392,7 +359,7 @@ export function AttendancePage() {
         <TabsContent value="engagement">
           <Card>
             <CardHeader>
-              <CardTitle className="text-[#000F61] flex items-center gap-2">
+              <CardTitle className="text-[#000F61] flex items-center gap-2" dir="rtl">
                 <Eye className="w-5 h-5 text-amber-500" />
                 משתמשים שלא מקפידים לצפות בקורסים מוקלטים
               </CardTitle>
