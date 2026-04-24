@@ -344,7 +344,7 @@ export function AttendancePage() {
                       />
                     </div>
                     {/* Recommendation */}
-                    <div className="flex items-start gap-2 p-2.5 rounded-lg bg-white border border-[#CA5369/30]">
+                    <div className="flex items-start gap-2 p-2.5 rounded-lg bg-white border border-[#CA5369/30]" dir="rtl">
                       <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
                       <p className="text-xs text-muted-foreground leading-5">{user.recommendation}</p>
                     </div>
@@ -400,7 +400,7 @@ export function AttendancePage() {
                       />
                     </div>
                     {/* Insight */}
-                    <div className="flex items-start gap-2 p-2.5 rounded-lg bg-white border border-[#F08700/30]">
+                    <div className="flex items-start gap-2 p-2.5 rounded-lg bg-white border border-[#F08700/30]" dir="rtl">
                       <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
                       <p className="text-xs text-muted-foreground leading-5">
                         <span style={{ fontWeight: 600 }}>אינסייט: </span>
