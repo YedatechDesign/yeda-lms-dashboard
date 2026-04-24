@@ -89,31 +89,10 @@ export function AttendancePage() {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <MetricCard
-          title="סה״כ קורסים"
-          value={overallMetrics.totalCourses}
-          subtitle={`היברידי: ${courseTypeBreakdown["היברידי"]} | מוקלט: ${courseTypeBreakdown["מוקלט"]} | פרונטלי: ${courseTypeBreakdown["פרונטלי"]}`}
-          icon={BookOpen}
-          color="#0A59EB"
-        />
-        <MetricCard
-          title="סה״כ לומדות"
-          value={overallMetrics.totalLearningUnits}
-          icon={Eye}
-          color="#079DED"
-        />
-        <MetricCard
-          title="אחוז נוכחות כללי"
-          value={`${overallMetrics.attendanceRate}%`}
-          icon={UserCheck}
-          color="#079DED"
-        />
-        <MetricCard
-          title="צפייה בתכנים מוקלטים"
-          value={`${overallMetrics.viewingRate}%`}
-          icon={Eye}
-          color="#F08700"
-        />
+        <MetricCard title="סה״כ קורסים" value={overallMetrics.totalCourses} icon={BookOpen} color="#0A59EB" vertical />
+        <MetricCard title="סה״כ לומדות" value={overallMetrics.totalLearningUnits} icon={Eye} color="#079DED" vertical />
+        <MetricCard title="אחוז נוכחות כללי" value={`${overallMetrics.attendanceRate}%`} icon={UserCheck} color="#079DED" vertical />
+        <MetricCard title="צפייה בתכנים מוקלטים" value={`${overallMetrics.viewingRate}%`} icon={Eye} color="#F08700" vertical />
       </div>
 
       {/* Attendance by Course Chart */}
@@ -122,7 +101,9 @@ export function AttendancePage() {
           <CardTitle className="text-[#000F61]">ממוצע נוכחות לפי קורס</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="h-[340px]" dir="ltr">
+          <div className="overflow-x-auto" dir="ltr">
+          <div className="min-w-[520px]">
+          <div className="h-[340px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={courseAttendance} margin={{ right: 10, left: 10, bottom: 20 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
@@ -145,15 +126,17 @@ export function AttendancePage() {
               </BarChart>
             </ResponsiveContainer>
           </div>
+          </div>
+          </div>
         </CardContent>
       </Card>
 
       <Tabs defaultValue="sessions" className="space-y-4">
-        <TabsList className="w-full sm:w-auto">
-          <TabsTrigger value="sessions">נוכחות למפגשים</TabsTrigger>
-          <TabsTrigger value="top">טופ 5 נוכחות</TabsTrigger>
-          <TabsTrigger value="low">נוכחות נמוכה</TabsTrigger>
-          <TabsTrigger value="engagement">צפייה בתכנים מוקלטים</TabsTrigger>
+        <TabsList className="w-full h-auto flex-wrap gap-y-1 p-1">
+          <TabsTrigger value="sessions" className="flex-1 basis-[calc(50%-2px)] sm:basis-auto h-8 text-xs sm:text-sm">נוכחות במפגשים</TabsTrigger>
+          <TabsTrigger value="top" className="flex-1 basis-[calc(50%-2px)] sm:basis-auto h-8 text-xs sm:text-sm">טופ 5 נוכחות</TabsTrigger>
+          <TabsTrigger value="low" className="flex-1 basis-[calc(50%-2px)] sm:basis-auto h-8 text-xs sm:text-sm">נוכחות נמוכה</TabsTrigger>
+          <TabsTrigger value="engagement" className="flex-1 basis-[calc(50%-2px)] sm:basis-auto h-8 text-xs sm:text-sm">תכנים מוקלטים</TabsTrigger>
         </TabsList>
 
         {/* Sessions Attendance Tab */}
@@ -270,7 +253,7 @@ export function AttendancePage() {
         <TabsContent value="top">
           <Card>
             <CardHeader>
-              <CardTitle className="text-[#000F61] flex items-center gap-2">
+              <CardTitle className="text-[#000F61] flex items-center gap-2" dir="rtl">
                 <UserCheck className="w-5 h-5 text-[#079DED]" />
                 טופ 5 משתמשים עם נוכחות גבוהה
               </CardTitle>
@@ -325,7 +308,7 @@ export function AttendancePage() {
         <TabsContent value="low">
           <Card>
             <CardHeader>
-              <CardTitle className="text-[#000F61] flex items-center gap-2">
+              <CardTitle className="text-[#000F61] flex items-center gap-2" dir="rtl">
                 <AlertTriangle className="w-5 h-5 text-[#CA5369]" />
                 משתמשים עם נוכחות נמוכה (מתחת ל-50%)
               </CardTitle>
@@ -335,41 +318,35 @@ export function AttendancePage() {
                 {lowAttendanceUsers.map((user, i) => (
                   <div
                     key={i}
-                    className="p-4 rounded-xl border border-[#CA5369/20] bg-[#CA5369/05]"
+                    className="p-4 rounded-xl border border-[#CA5369/20] bg-[#CA5369/05] space-y-3"
                   >
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                      <div className="sm:max-w-[320px]">
-                        <div className="flex items-start gap-2 p-2.5 rounded-lg bg-white border border-[#CA5369/30]">
-                          <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
-                          <p className="text-xs text-muted-foreground leading-5">
-                            {user.recommendation}
-                          </p>
-                        </div>
-                      </div>
+                    {/* User info */}
+                    <div className="flex items-start justify-between gap-2">
+                      <span className="text-[#CA5369] text-lg shrink-0" style={{ fontWeight: 700 }}>
+                        {user.percentage}%
+                      </span>
                       <div className="text-right">
-                        <div className="flex items-center justify-end gap-2 mb-1">
-                          <span className="text-[#CA5369] text-sm" style={{ fontWeight: 700 }}>
-                            {user.percentage}%
-                          </span>
-                          <span style={{ fontWeight: 600 }} className="text-[#000F61]">
-                            {user.name}
-                          </span>
-                        </div>
-                        <p className="text-xs text-muted-foreground flex items-center justify-end gap-1">
+                        <p style={{ fontWeight: 600 }} className="text-[#000F61] text-sm">{user.name}</p>
+                        <p className="text-xs text-muted-foreground flex items-center justify-end gap-1 mt-0.5">
                           {user.email}
-                          <Mail className="w-3 h-3" />
+                          <Mail className="w-3 h-3 shrink-0" />
                         </p>
-                        <p className="text-xs text-muted-foreground mt-1">
+                        <p className="text-xs text-muted-foreground mt-0.5">
                           {user.attended} מפגשים מתוך {user.total}
                         </p>
                       </div>
                     </div>
                     {/* Progress bar */}
-                    <div className="mt-3 h-2 rounded-full bg-[#CA5369/10] overflow-hidden" dir="rtl">
+                    <div className="h-2 rounded-full bg-[#CA5369/10] overflow-hidden" dir="rtl">
                       <div
                         className="h-full rounded-full bg-[#CA5369] transition-all"
                         style={{ width: `${user.percentage}%` }}
                       />
+                    </div>
+                    {/* Recommendation */}
+                    <div className="flex items-start gap-2 p-2.5 rounded-lg bg-white border border-[#CA5369/30]" dir="rtl">
+                      <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                      <p className="text-xs text-muted-foreground leading-5">{user.recommendation}</p>
                     </div>
                   </div>
                 ))}
@@ -382,7 +359,7 @@ export function AttendancePage() {
         <TabsContent value="engagement">
           <Card>
             <CardHeader>
-              <CardTitle className="text-[#000F61] flex items-center gap-2">
+              <CardTitle className="text-[#000F61] flex items-center gap-2" dir="rtl">
                 <Eye className="w-5 h-5 text-amber-500" />
                 משתמשים שלא מקפידים לצפות בקורסים מוקלטים
               </CardTitle>
@@ -392,51 +369,43 @@ export function AttendancePage() {
                 {lowEngagementUsers.map((user, i) => (
                   <div
                     key={i}
-                    className="p-4 rounded-xl border border-[#F08700/20] bg-[#F08700/05]"
+                    className="p-4 rounded-xl border border-[#F08700/20] bg-[#F08700/05] space-y-3"
                   >
-                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
-                      <div className="sm:max-w-[350px]">
-                        <div className="flex items-start gap-2 p-2.5 rounded-lg bg-white border border-[#F08700/30]">
-                          <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
-                          <p className="text-xs text-muted-foreground leading-5">
-                            <span style={{ fontWeight: 600 }}>אינסייט: </span>
-                            {user.insight}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex-1 text-right">
-                        <div className="flex items-center justify-end gap-2 mb-1 flex-wrap">
-                          <Badge
-                            variant="outline"
-                            className="text-[10px] border-[#079DED] text-[#079DED]"
-                          >
+                    {/* User info */}
+                    <div className="flex items-start justify-between gap-2">
+                      <span className="text-[#F08700] text-lg shrink-0" style={{ fontWeight: 700 }}>
+                        {user.percentage}%
+                      </span>
+                      <div className="text-right">
+                        <div className="flex items-center justify-end gap-2 mb-0.5 flex-wrap">
+                          <Badge variant="outline" className="text-[10px] border-[#079DED] text-[#079DED]">
                             {user.courseName}
                           </Badge>
-                          <span style={{ fontWeight: 600 }} className="text-[#000F61]">
-                            {user.name}
-                          </span>
+                          <span style={{ fontWeight: 600 }} className="text-[#000F61] text-sm">{user.name}</span>
                         </div>
-                        <p className="text-xs text-muted-foreground flex items-center justify-end gap-1">
+                        <p className="text-xs text-muted-foreground flex items-center justify-end gap-1 mt-0.5">
                           {user.email}
-                          <Mail className="w-3 h-3" />
+                          <Mail className="w-3 h-3 shrink-0" />
                         </p>
-                        <p className="text-xs mt-1 text-right">
-                          <span className="text-[#F08700] ml-2" style={{ fontWeight: 700 }}>
-                            ({user.percentage}%)
-                          </span>
-                          <span className="text-muted-foreground">שיעורים נצפו </span>
-                          <span className="text-[#F08700]" style={{ fontWeight: 600 }}>
-                            {user.watched} מתוך {user.total}
-                          </span>
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          {user.watched} מתוך {user.total} שיעורים נצפו
                         </p>
-                        {/* Progress bar */}
-                        <div className="mt-2 h-2 rounded-full bg-[#F08700/10] overflow-hidden" dir="rtl">
-                          <div
-                            className="h-full rounded-full bg-[#F08700] transition-all"
-                            style={{ width: `${user.percentage}%` }}
-                          />
-                        </div>
                       </div>
+                    </div>
+                    {/* Progress bar */}
+                    <div className="h-2 rounded-full bg-[#F08700/10] overflow-hidden" dir="rtl">
+                      <div
+                        className="h-full rounded-full bg-[#F08700] transition-all"
+                        style={{ width: `${user.percentage}%` }}
+                      />
+                    </div>
+                    {/* Insight */}
+                    <div className="flex items-start gap-2 p-2.5 rounded-lg bg-white border border-[#F08700/30]" dir="rtl">
+                      <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                      <p className="text-xs text-muted-foreground leading-5">
+                        <span style={{ fontWeight: 600 }}>אינסייט: </span>
+                        {user.insight}
+                      </p>
                     </div>
                   </div>
                 ))}

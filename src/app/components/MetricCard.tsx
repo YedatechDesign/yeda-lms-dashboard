@@ -8,9 +8,28 @@ interface MetricCardProps {
   icon: LucideIcon;
   color?: string;
   trend?: { value: string; positive: boolean };
+  vertical?: boolean;
 }
 
-export function MetricCard({ title, value, subtitle, icon: Icon, color = "#22D3EE", trend }: MetricCardProps) {
+export function MetricCard({ title, value, subtitle, icon: Icon, color = "#22D3EE", trend, vertical }: MetricCardProps) {
+  if (vertical) {
+    return (
+      <Card className="p-4 hover:shadow-md transition-shadow">
+        <div className="flex flex-col items-center text-center gap-2">
+          <div
+            className="w-12 h-12 rounded-xl flex items-center justify-center"
+            style={{ backgroundColor: `${color}20` }}
+          >
+            <Icon className="w-6 h-6" style={{ color }} />
+          </div>
+          <p className="text-2xl" style={{ fontWeight: 700, color: "#000F61" }}>{value}</p>
+          <p className="text-xs text-muted-foreground leading-4">{title}</p>
+          {subtitle && <p className="text-xs text-muted-foreground">{subtitle}</p>}
+        </div>
+      </Card>
+    );
+  }
+
   return (
     <Card className="p-5 hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between">
