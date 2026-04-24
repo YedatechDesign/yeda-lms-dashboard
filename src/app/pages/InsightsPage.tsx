@@ -55,24 +55,28 @@ export function InsightsPage() {
           value={`${overallMetrics.averageScore}%`}
           icon={Target}
           color="#0A59EB"
+          vertical
         />
         <MetricCard
           title="אחוז הצלחה כללי"
           value={`${overallMetrics.passRate}%`}
           icon={Trophy}
           color={overallMetrics.passRate >= 70 ? "#079DED" : "#CA5369"}
+          vertical
         />
         <MetricCard
           title="אחוז נוכחות כללי"
           value={`${overallMetrics.attendanceRate}%`}
           icon={UserCheck}
           color="#079DED"
+          vertical
         />
         <MetricCard
           title="צפייה בתכנים מוקלטים"
           value={`${overallMetrics.viewingRate}%`}
           icon={Eye}
           color="#F08700"
+          vertical
         />
       </div>
 
@@ -82,24 +86,28 @@ export function InsightsPage() {
           value={overallMetrics.activeUsers}
           icon={Users}
           color="#0A59EB"
+          vertical
         />
         <MetricCard
           title="סה״כ קורסים"
           value={overallMetrics.totalCourses}
           icon={BookOpen}
           color="#079DED"
+          vertical
         />
         <MetricCard
           title="סה״כ לומדות"
           value={overallMetrics.totalLearningUnits}
           icon={Layers}
           color="#079DED"
+          vertical
         />
         <MetricCard
           title="מבחנים ותרגולים"
           value={overallMetrics.totalExams + overallMetrics.totalExercises}
           icon={GraduationCap}
           color="#F08700"
+          vertical
         />
       </div>
 
