@@ -124,7 +124,9 @@ export function ExamsPage() {
           <CardTitle className="text-[#000F61]">שיעורי הצלחה וציון ממוצע במבחנים</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="h-[360px]" dir="ltr">
+          <div className="overflow-x-auto" dir="ltr">
+          <div className="min-w-[560px]">
+          <div className="h-[360px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={passRateChart} margin={{ right: 10, left: 10, bottom: 20 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
@@ -152,6 +154,8 @@ export function ExamsPage() {
                 />
               </BarChart>
             </ResponsiveContainer>
+          </div>
+          </div>
           </div>
         </CardContent>
       </Card>

@@ -150,7 +150,7 @@ export function DashboardPage() {
                 </PieChart>
               </ResponsiveContainer>
             </div>
-            <div className="flex justify-center gap-6 mt-4">
+            <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 mt-4">
               {pieData.map((entry) => (
                 <div key={entry.name} className="flex items-center gap-2">
                   <div
@@ -172,7 +172,9 @@ export function DashboardPage() {
             <CardTitle className="text-[#000F61]">שיעורי הצלחה במבחנים</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-[300px]" dir="ltr">
+            <div className="overflow-x-auto" dir="ltr">
+            <div className="min-w-[460px]">
+            <div className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={topExams} layout="vertical" margin={{ right: 150, left: 10, top: 5, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" horizontal={false} />
@@ -193,6 +195,8 @@ export function DashboardPage() {
                   <Legend />
                 </BarChart>
               </ResponsiveContainer>
+            </div>
+            </div>
             </div>
           </CardContent>
         </Card>

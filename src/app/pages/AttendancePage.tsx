@@ -122,7 +122,9 @@ export function AttendancePage() {
           <CardTitle className="text-[#000F61]">ממוצע נוכחות לפי קורס</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="h-[340px]" dir="ltr">
+          <div className="overflow-x-auto" dir="ltr">
+          <div className="min-w-[520px]">
+          <div className="h-[340px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={courseAttendance} margin={{ right: 10, left: 10, bottom: 20 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
@@ -144,6 +146,8 @@ export function AttendancePage() {
                 />
               </BarChart>
             </ResponsiveContainer>
+          </div>
+          </div>
           </div>
         </CardContent>
       </Card>
@@ -338,7 +342,7 @@ export function AttendancePage() {
                     className="p-4 rounded-xl border border-[#CA5369/20] bg-[#CA5369/05]"
                   >
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                      <div className="sm:max-w-[320px]">
+                      <div className="sm:max-w-[320px] order-2 sm:order-1">
                         <div className="flex items-start gap-2 p-2.5 rounded-lg bg-white border border-[#CA5369/30]">
                           <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
                           <p className="text-xs text-muted-foreground leading-5">
@@ -346,7 +350,7 @@ export function AttendancePage() {
                           </p>
                         </div>
                       </div>
-                      <div className="text-right">
+                      <div className="text-right order-1 sm:order-2">
                         <div className="flex items-center justify-end gap-2 mb-1">
                           <span className="text-[#CA5369] text-sm" style={{ fontWeight: 700 }}>
                             {user.percentage}%
@@ -395,7 +399,7 @@ export function AttendancePage() {
                     className="p-4 rounded-xl border border-[#F08700/20] bg-[#F08700/05]"
                   >
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
-                      <div className="sm:max-w-[350px]">
+                      <div className="sm:max-w-[350px] order-2 sm:order-1">
                         <div className="flex items-start gap-2 p-2.5 rounded-lg bg-white border border-[#F08700/30]">
                           <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
                           <p className="text-xs text-muted-foreground leading-5">
@@ -404,7 +408,7 @@ export function AttendancePage() {
                           </p>
                         </div>
                       </div>
-                      <div className="flex-1 text-right">
+                      <div className="flex-1 text-right order-1 sm:order-2">
                         <div className="flex items-center justify-end gap-2 mb-1 flex-wrap">
                           <Badge
                             variant="outline"
