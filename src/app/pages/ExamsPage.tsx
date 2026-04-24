@@ -329,17 +329,8 @@ export function ExamsPage() {
                             className="p-4 rounded-xl border bg-muted/20"
                           >
                             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
-                              <div className="flex-1">
-                                <div className="flex items-center gap-2 mb-2">
-                                  <span className="w-6 h-6 rounded-full bg-[#0A59EB]/10 flex items-center justify-center text-[#0A59EB] text-xs" style={{ fontWeight: 700 }}>
-                                    {i + 1}
-                                  </span>
-                                  <p className="text-sm text-[#000F61]" style={{ fontWeight: 500 }}>
-                                    {q.text}
-                                  </p>
-                                </div>
-                              </div>
                               <div className="flex items-center gap-3 shrink-0">
+                                {getDifficultyBadge(q.difficulty)}
                                 <div className="text-center">
                                   <span
                                     className={`text-lg ${getScoreColor(q.successRate)}`}
@@ -349,7 +340,16 @@ export function ExamsPage() {
                                   </span>
                                   <p className="text-[10px] text-muted-foreground">הצלחה</p>
                                 </div>
-                                {getDifficultyBadge(q.difficulty)}
+                              </div>
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-2 justify-end">
+                                  <p className="text-sm text-[#000F61] text-right" dir="rtl" style={{ fontWeight: 500 }}>
+                                    {q.text}
+                                  </p>
+                                  <span className="w-6 h-6 rounded-full bg-[#0A59EB]/10 flex items-center justify-center text-[#0A59EB] text-xs shrink-0" style={{ fontWeight: 700 }}>
+                                    {i + 1}
+                                  </span>
+                                </div>
                               </div>
                             </div>
                             {/* Success rate bar */}
