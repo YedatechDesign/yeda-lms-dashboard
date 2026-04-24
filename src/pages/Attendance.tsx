@@ -218,9 +218,9 @@ const filterBtn = (active: boolean): React.CSSProperties => ({
 
 const pageTitle: React.CSSProperties = { fontSize: 20, fontWeight: 700, color: 'var(--primary-dark)', marginBottom: 4 };
 const pageSub: React.CSSProperties = { fontSize: 13, color: 'var(--text-secondary)' };
-const card: React.CSSProperties = { background: 'var(--white)', borderRadius: 'var(--radius-lg)', padding: '20px 22px', border: '1px solid var(--border)', boxShadow: 'var(--shadow-card)' };
-const cardHeader: React.CSSProperties = { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 };
-const cardTitle: React.CSSProperties = { fontSize: 14, fontWeight: 600, color: 'var(--primary-dark)' };
-const cardSub: React.CSSProperties = { fontSize: 12, color: 'var(--text-secondary)', marginTop: 2 };
-const th: React.CSSProperties = { padding: '10px 16px', textAlign: 'right', fontWeight: 500, fontSize: 12, color: 'var(--text-secondary)', borderBottom: '1px solid var(--border)' };
-const td: React.CSSProperties = { padding: '11px 16px', color: 'var(--text)' };
+const card: React.CSSProperties = { background: 'var(--white)', borderRadius: 'var(--radius-xl)', padding: '20px 22px', border: '1px solid var(--border)', boxShadow: 'var(--shadow-card)' };
+const cardHeader: React.CSSProperties = { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16, paddingBottom: 12, borderBottom: '1px solid var(--border)' };
+const cardTitle: React.CSSProperties = { fontSize: 14, fontWeight: 600, color: 'var(--primary-dark)', letterSpacing: -0.2 };
+const cardSub: React.CSSProperties = { fontSize: 12, color: 'var(--text-secondary)', marginTop: 3 };
+const th: React.CSSProperties = { padding: '11px 16px', textAlign: 'right', fontWeight: 600, fontSize: 11, color: 'var(--text-secondary)', borderBottom: '1px solid var(--border)', letterSpacing: 0.3, background: 'var(--primary-bg)' };
+const td: React.CSSProperties = { padding: '12px 16px', color: 'var(--text)', fontSize: 13 };

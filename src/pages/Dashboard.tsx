@@ -104,14 +104,27 @@ export default function Dashboard() {
       {/* Exams/exercises summary row */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16 }}>
         {[
-          { label: 'סה״כ מבחנים',  value: globalStats.totalExams,      color: '#0A59EB' },
-          { label: 'סה״כ תרגולים', value: globalStats.totalExercises,   color: '#F08700' },
-          { label: 'ציון ממוצע כללי', value: globalStats.averageScore, color: '#079DED', suffix: '' },
-          { label: 'אחוז הצלחה',   value: globalStats.passRate,         color: '#CA5369', suffix: '%' },
+          { label: 'סה״כ מבחנים',     value: globalStats.totalExams,     color: '#0A59EB', suffix: '' },
+          { label: 'סה״כ תרגולים',    value: globalStats.totalExercises,  color: '#F08700', suffix: '' },
+          { label: 'ציון ממוצע כללי', value: globalStats.averageScore,    color: '#079DED', suffix: '' },
+          { label: 'אחוז הצלחה',      value: globalStats.passRate,        color: '#CA5369', suffix: '%' },
         ].map(({ label, value, color, suffix }) => (
-          <div key={label} style={{ background: 'var(--white)', borderRadius: 'var(--radius)', padding: '16px 20px', border: '1px solid var(--border)', boxShadow: 'var(--shadow-card)', borderTop: `3px solid ${color}` }}>
-            <div style={{ fontSize: 11, color: 'var(--text-secondary)', marginBottom: 6 }}>{label}</div>
-            <div style={{ fontSize: 26, fontWeight: 700, color }}>{value}{suffix}</div>
+          <div key={label} style={{
+            background: 'var(--white)',
+            borderRadius: 'var(--radius-lg)',
+            padding: '18px 20px',
+            border: '1px solid var(--border)',
+            boxShadow: 'var(--shadow-card)',
+            borderTop: `3px solid ${color}`,
+            position: 'relative',
+            overflow: 'hidden',
+          }}>
+            <div style={{
+              position: 'absolute', top: 0, left: 0, right: 0, height: 3,
+              background: color,
+            }} />
+            <div style={{ fontSize: 11, color: 'var(--text-secondary)', marginBottom: 8, fontWeight: 500 }}>{label}</div>
+            <div style={{ fontSize: 28, fontWeight: 700, color, letterSpacing: -1, lineHeight: 1 }}>{value}{suffix}</div>
           </div>
         ))}
       </div>
@@ -120,25 +133,31 @@ export default function Dashboard() {
 }
 
 function KpiCard({ label, value, icon, color, highlight }: { label: string; value: string; icon: React.ReactNode; color: string; highlight?: boolean }) {
+  const gradients: Record<string, string> = {
+    '#0A59EB': 'linear-gradient(135deg, #000F61 0%, #0A59EB 100%)',
+    '#CA5369': 'linear-gradient(135deg, #8B1A2F 0%, #CA5369 100%)',
+    '#079DED': 'linear-gradient(135deg, #0569A8 0%, #079DED 100%)',
+  };
   return (
     <div style={{
-      background: highlight ? color : 'var(--white)',
-      borderRadius: 'var(--radius)',
-      padding: '16px 20px',
-      border: `1px solid ${highlight ? color : 'var(--border)'}`,
-      boxShadow: 'var(--shadow-card)',
+      background: highlight ? (gradients[color] ?? color) : 'var(--white)',
+      borderRadius: 'var(--radius-lg)',
+      padding: '18px 20px',
+      border: highlight ? 'none' : '1px solid var(--border)',
+      boxShadow: highlight ? `0 6px 28px ${color}33` : 'var(--shadow-card)',
       display: 'flex', alignItems: 'center', gap: 14,
     }}>
       <div style={{
-        background: highlight ? 'rgba(255,255,255,0.2)' : color + '18',
+        background: highlight ? 'rgba(255,255,255,0.18)' : color + '15',
         color: highlight ? '#fff' : color,
-        width: 40, height: 40, borderRadius: 10,
+        width: 44, height: 44, borderRadius: 12,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         flexShrink: 0,
+        border: highlight ? '1px solid rgba(255,255,255,0.2)' : 'none',
       }}>{icon}</div>
       <div>
-        <div style={{ fontSize: 11, color: highlight ? 'rgba(255,255,255,0.75)' : 'var(--text-secondary)', marginBottom: 2 }}>{label}</div>
-        <div style={{ fontSize: 22, fontWeight: 700, color: highlight ? '#fff' : 'var(--primary-dark)', lineHeight: 1 }}>{value}</div>
+        <div style={{ fontSize: 11, color: highlight ? 'rgba(255,255,255,0.7)' : 'var(--text-secondary)', marginBottom: 3, fontWeight: 500 }}>{label}</div>
+        <div style={{ fontSize: 24, fontWeight: 700, color: highlight ? '#fff' : 'var(--primary-dark)', lineHeight: 1, letterSpacing: -0.5 }}>{value}</div>
       </div>
     </div>
   );
@@ -146,10 +165,10 @@ function KpiCard({ label, value, icon, color, highlight }: { label: string; valu
 
 function Card({ title, sub, children }: { title: string; sub?: string; children: React.ReactNode }) {
   return (
-    <div style={{ background: 'var(--white)', borderRadius: 'var(--radius-lg)', padding: '20px 22px', border: '1px solid var(--border)', boxShadow: 'var(--shadow-card)' }}>
-      <div style={{ marginBottom: 16 }}>
-        <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--primary-dark)' }}>{title}</div>
-        {sub && <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 2 }}>{sub}</div>}
+    <div style={{ background: 'var(--white)', borderRadius: 'var(--radius-xl)', padding: '20px 22px', border: '1px solid var(--border)', boxShadow: 'var(--shadow-card)' }}>
+      <div style={{ marginBottom: 16, paddingBottom: 12, borderBottom: '1px solid var(--border)' }}>
+        <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--primary-dark)', letterSpacing: -0.2 }}>{title}</div>
+        {sub && <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 3 }}>{sub}</div>}
       </div>
       {children}
     </div>

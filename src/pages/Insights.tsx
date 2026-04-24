@@ -24,15 +24,15 @@ export default function Insights() {
       </div>
 
       {/* Insights cards */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         {insightsData.map((insight, i) => {
           const cfg = typeConfig[insight.type as keyof typeof typeConfig];
           return (
             <div key={insight.id} style={{
               background: cfg.bg,
               borderRadius: 'var(--radius-lg)',
-              padding: '18px 20px',
-              border: `1px solid ${cfg.border}30`,
+              padding: '16px 20px',
+              border: `1px solid ${cfg.border}25`,
               borderRight: `4px solid ${cfg.border}`,
               display: 'flex',
               gap: 14,
@@ -55,8 +55,8 @@ export default function Insights() {
       </div>
 
       {/* Action items */}
-      <div style={{ background: 'var(--white)', borderRadius: 'var(--radius-lg)', padding: '20px 22px', border: '1px solid var(--border)', boxShadow: 'var(--shadow-card)' }}>
-        <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--primary-dark)', marginBottom: 16 }}>המלצות לפעולה מיידית</div>
+      <div style={{ background: 'var(--white)', borderRadius: 'var(--radius-xl)', padding: '20px 22px', border: '1px solid var(--border)', boxShadow: 'var(--shadow-card)' }}>
+        <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--primary-dark)', marginBottom: 16, paddingBottom: 12, borderBottom: '1px solid var(--border)', letterSpacing: -0.2 }}>המלצות לפעולה מיידית</div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {[
             { action: 'שלח תזכורות אוטומטיות ל-4 משתמשים עם נוכחות נמוכה מ-50%', priority: 'גבוה', color: '#CA5369' },
@@ -77,11 +77,17 @@ export default function Insights() {
 
 function MetricCard({ label, value, trend, positive }: { label: string; value: string; trend: string; positive: boolean }) {
   return (
-    <div style={{ background: 'var(--white)', borderRadius: 'var(--radius)', padding: '16px 20px', border: '1px solid var(--border)', boxShadow: 'var(--shadow-card)' }}>
-      <div style={{ fontSize: 11, color: 'var(--text-secondary)', marginBottom: 6 }}>{label}</div>
-      <div style={{ fontSize: 26, fontWeight: 700, color: 'var(--primary-dark)', marginBottom: 4 }}>{value}</div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 12, color: positive ? '#079DED' : '#CA5369', fontWeight: 500 }}>
-        {positive ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
+    <div style={{ background: 'var(--white)', borderRadius: 'var(--radius-lg)', padding: '20px 22px', border: '1px solid var(--border)', boxShadow: 'var(--shadow-card)' }}>
+      <div style={{ fontSize: 11, color: 'var(--text-secondary)', marginBottom: 8, fontWeight: 500 }}>{label}</div>
+      <div style={{ fontSize: 30, fontWeight: 700, color: 'var(--primary-dark)', marginBottom: 8, letterSpacing: -1, lineHeight: 1 }}>{value}</div>
+      <div style={{
+        display: 'inline-flex', alignItems: 'center', gap: 4,
+        fontSize: 11, fontWeight: 600,
+        color: positive ? '#079DED' : '#CA5369',
+        background: positive ? 'rgba(7,157,237,0.1)' : 'rgba(202,83,105,0.1)',
+        padding: '3px 8px', borderRadius: 20,
+      }}>
+        {positive ? <TrendingUp size={11} /> : <TrendingDown size={11} />}
         {trend} לעומת החודש הקודם
       </div>
     </div>

@@ -26,14 +26,14 @@ export default function Exams() {
       {/* Summary KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16 }}>
         {[
-          { label: 'סה״כ מבחנים',    value: globalStats.totalExams,     color: '#0A59EB' },
-          { label: 'סה״כ תרגולים',   value: globalStats.totalExercises,  color: '#F08700' },
-          { label: 'ציון ממוצע כללי', value: `${globalStats.averageScore}`, color: '#079DED' },
-          { label: 'אחוז הצלחה כללי', value: `${globalStats.passRate}%`, color: '#CA5369' },
+          { label: 'סה״כ מבחנים',    value: globalStats.totalExams,           color: '#0A59EB' },
+          { label: 'סה״כ תרגולים',   value: globalStats.totalExercises,        color: '#F08700' },
+          { label: 'ציון ממוצע כללי', value: `${globalStats.averageScore}`,    color: '#079DED' },
+          { label: 'אחוז הצלחה כללי', value: `${globalStats.passRate}%`,       color: '#CA5369' },
         ].map(({ label, value, color }) => (
-          <div key={label} style={{ background: 'var(--white)', borderRadius: 'var(--radius)', padding: '16px 20px', border: '1px solid var(--border)', boxShadow: 'var(--shadow-card)', borderTop: `3px solid ${color}` }}>
-            <div style={{ fontSize: 11, color: 'var(--text-secondary)', marginBottom: 6 }}>{label}</div>
-            <div style={{ fontSize: 26, fontWeight: 700, color }}>{value}</div>
+          <div key={label} style={{ background: 'var(--white)', borderRadius: 'var(--radius-lg)', padding: '18px 20px', border: '1px solid var(--border)', boxShadow: 'var(--shadow-card)', borderTop: `3px solid ${color}` }}>
+            <div style={{ fontSize: 11, color: 'var(--text-secondary)', marginBottom: 8, fontWeight: 500 }}>{label}</div>
+            <div style={{ fontSize: 28, fontWeight: 700, color, letterSpacing: -1, lineHeight: 1 }}>{value}</div>
           </div>
         ))}
       </div>
@@ -187,8 +187,8 @@ const filterBtn = (active: boolean): React.CSSProperties => ({
 
 const pageTitle: React.CSSProperties = { fontSize: 20, fontWeight: 700, color: 'var(--primary-dark)', marginBottom: 4 };
 const pageSub: React.CSSProperties = { fontSize: 13, color: 'var(--text-secondary)' };
-const card: React.CSSProperties = { background: 'var(--white)', borderRadius: 'var(--radius-lg)', padding: '20px 22px', border: '1px solid var(--border)', boxShadow: 'var(--shadow-card)' };
-const cardTitle: React.CSSProperties = { fontSize: 14, fontWeight: 600, color: 'var(--primary-dark)' };
-const cardSub: React.CSSProperties = { fontSize: 12, color: 'var(--text-secondary)', marginTop: 2 };
-const th: React.CSSProperties = { padding: '10px 16px', textAlign: 'right', fontWeight: 500, fontSize: 12, color: 'var(--text-secondary)', borderBottom: '1px solid var(--border)' };
-const td: React.CSSProperties = { padding: '11px 16px', color: 'var(--text)' };
+const card: React.CSSProperties = { background: 'var(--white)', borderRadius: 'var(--radius-xl)', padding: '20px 22px', border: '1px solid var(--border)', boxShadow: 'var(--shadow-card)' };
+const cardTitle: React.CSSProperties = { fontSize: 14, fontWeight: 600, color: 'var(--primary-dark)', letterSpacing: -0.2 };
+const cardSub: React.CSSProperties = { fontSize: 12, color: 'var(--text-secondary)', marginTop: 3 };
+const th: React.CSSProperties = { padding: '11px 16px', textAlign: 'right', fontWeight: 600, fontSize: 11, color: 'var(--text-secondary)', borderBottom: '1px solid var(--border)', letterSpacing: 0.3, background: 'var(--primary-bg)' };
+const td: React.CSSProperties = { padding: '12px 16px', color: 'var(--text)', fontSize: 13 };
