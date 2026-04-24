@@ -20,7 +20,7 @@ export function Layout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div dir="rtl" className="min-h-screen bg-[#f0f2f5]" style={{ fontFamily: "'Heebo', sans-serif" }}>
+    <div dir="rtl" className="min-h-screen bg-[#f0f2f5]" style={{ fontFamily: "'Rubik', sans-serif" }}>
       {/* Header */}
       <header className="bg-[#000F61] text-white sticky top-0 z-50 shadow-lg">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6">

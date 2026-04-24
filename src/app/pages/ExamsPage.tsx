@@ -130,7 +130,7 @@ export function ExamsPage() {
                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
                 <XAxis
                   dataKey="name"
-                  tick={{ fontSize: 11, fontFamily: "'Heebo', sans-serif", fill: "#717182" }}
+                  tick={{ fontSize: 11, fontFamily: "'Rubik', sans-serif", fill: "#717182" }}
                   angle={-30}
                   textAnchor="end"
                   height={90}

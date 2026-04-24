@@ -182,11 +182,11 @@ export function DashboardPage() {
                     type="category"
                     orientation="right"
                     width={145}
-                    tick={{ fontSize: 11, fontFamily: "'Heebo', sans-serif", fill: "#717182" }}
+                    tick={{ fontSize: 11, fontFamily: "'Rubik', sans-serif", fill: "#717182" }}
                   />
                   <Tooltip
                     formatter={(value: number) => `${value}%`}
-                    labelStyle={{ fontFamily: "'Heebo', sans-serif" }}
+                    labelStyle={{ fontFamily: "'Rubik', sans-serif" }}
                   />
                   <Bar dataKey="passRate" name="אחוז הצלחה" fill="#0A59EB" radius={[0, 4, 4, 0]} />
                   <Bar dataKey="averageScore" name="ציון ממוצע" fill="#079DED" radius={[0, 4, 4, 0]} />
