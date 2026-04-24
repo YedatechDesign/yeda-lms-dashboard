@@ -42,9 +42,9 @@ import {
 } from "recharts";
 
 const COLORS: Record<string, string> = {
-  "היברידי": "#6366F1",
-  "מוקלט": "#22D3EE",
-  "פרונטלי": "#F59E0B",
+  "היברידי": "#0A59EB",
+  "מוקלט": "#079DED",
+  "פרונטלי": "#F08700",
 };
 
 // Compute per-course average attendance
@@ -62,15 +62,15 @@ const courseAttendance = courses
   });
 
 function getAttendanceColor(pct: number) {
-  if (pct >= 80) return "text-emerald-600";
-  if (pct >= 60) return "text-amber-600";
-  return "text-red-600";
+  if (pct >= 80) return "text-[#079DED]";
+  if (pct >= 60) return "text-[#F08700]";
+  return "text-[#CA5369]";
 }
 
 function getAttendanceBg(pct: number) {
-  if (pct >= 80) return "bg-emerald-50 border-emerald-200";
-  if (pct >= 60) return "bg-amber-50 border-amber-200";
-  return "bg-red-50 border-red-200";
+  if (pct >= 80) return "bg-[#079DED/08] border-[#079DED/30]";
+  if (pct >= 60) return "bg-amber-50 border-[#F08700/30]";
+  return "bg-red-50 border-[#CA5369/30]";
 }
 
 export function AttendancePage() {
@@ -81,7 +81,7 @@ export function AttendancePage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-[#0B1437]">נוכחות</h1>
+        <h1 className="text-[#000F61]">נוכחות</h1>
         <p className="text-sm text-muted-foreground mt-1">
           מעקב נוכחות למפגשים חיים וצפייה בתכנים מוקלטים
         </p>
@@ -94,45 +94,52 @@ export function AttendancePage() {
           value={overallMetrics.totalCourses}
           subtitle={`היברידי: ${courseTypeBreakdown["היברידי"]} | מוקלט: ${courseTypeBreakdown["מוקלט"]} | פרונטלי: ${courseTypeBreakdown["פרונטלי"]}`}
           icon={BookOpen}
-          color="#6366F1"
+          color="#0A59EB"
         />
         <MetricCard
           title="סה״כ לומדות"
           value={overallMetrics.totalLearningUnits}
           icon={Eye}
-          color="#22D3EE"
+          color="#079DED"
         />
         <MetricCard
           title="אחוז נוכחות כללי"
           value={`${overallMetrics.attendanceRate}%`}
           icon={UserCheck}
-          color="#10B981"
+          color="#079DED"
         />
         <MetricCard
           title="צפייה בתכנים מוקלטים"
           value={`${overallMetrics.viewingRate}%`}
           icon={Eye}
-          color="#F59E0B"
+          color="#F08700"
         />
       </div>
 
       {/* Attendance by Course Chart */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-[#0B1437]">ממוצע נוכחות לפי קורס</CardTitle>
+          <CardTitle className="text-[#000F61]">ממוצע נוכחות לפי קורס</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="h-[300px]">
+          <div className="h-[340px]" dir="ltr">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={courseAttendance} margin={{ right: 10, left: 10 }}>
+              <BarChart data={courseAttendance} margin={{ right: 10, left: 10, bottom: 20 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                <XAxis dataKey="name" tick={{ fontSize: 11 }} angle={-25} textAnchor="end" height={80} />
-                <YAxis domain={[0, 100]} tickFormatter={(v) => `${v}%`} />
+                <XAxis
+                  dataKey="name"
+                  tick={{ fontSize: 11, fontFamily: "'Heebo', sans-serif", fill: "#717182" }}
+                  angle={-30}
+                  textAnchor="end"
+                  height={90}
+                  interval={0}
+                />
+                <YAxis domain={[0, 100]} tickFormatter={(v) => `${v}%`} tick={{ fontSize: 11, fill: "#717182" }} />
                 <Tooltip formatter={(value: number) => `${value}%`} />
                 <Bar
                   dataKey="average"
                   name="ממוצע נוכחות"
-                  fill="#6366F1"
+                  fill="#0A59EB"
                   radius={[4, 4, 0, 0]}
                 />
               </BarChart>
@@ -174,7 +181,7 @@ export function AttendancePage() {
                         }}
                       />
                       <div>
-                        <h3 className="text-[#0B1437] text-sm">{course.name}</h3>
+                        <h3 className="text-[#000F61] text-sm">{course.name}</h3>
                         <p className="text-xs text-muted-foreground">
                           {course.sessions} מפגשים |{" "}
                           <Badge
@@ -220,13 +227,13 @@ export function AttendancePage() {
                                 </span>
                               </TableCell>
                               <TableCell className="text-center">
-                                <span className="inline-flex items-center gap-1 text-emerald-600">
+                                <span className="inline-flex items-center gap-1 text-[#079DED]">
                                   <UserCheck className="w-3 h-3" />
                                   {session.attended}
                                 </span>
                               </TableCell>
                               <TableCell className="text-center">
-                                <span className="inline-flex items-center gap-1 text-red-500">
+                                <span className="inline-flex items-center gap-1 text-[#CA5369]">
                                   <UserX className="w-3 h-3" />
                                   {session.absent}
                                 </span>
@@ -263,8 +270,8 @@ export function AttendancePage() {
         <TabsContent value="top">
           <Card>
             <CardHeader>
-              <CardTitle className="text-[#0B1437] flex items-center gap-2">
-                <UserCheck className="w-5 h-5 text-emerald-600" />
+              <CardTitle className="text-[#000F61] flex items-center gap-2">
+                <UserCheck className="w-5 h-5 text-[#079DED]" />
                 טופ 5 משתמשים עם נוכחות גבוהה
               </CardTitle>
             </CardHeader>
@@ -283,7 +290,7 @@ export function AttendancePage() {
                   {topAttendanceUsers.map((user, i) => (
                     <TableRow key={i}>
                       <TableCell>
-                        <div className="w-7 h-7 rounded-full bg-gradient-to-bl from-[#22D3EE] to-[#6366F1] flex items-center justify-center text-white text-xs">
+                        <div className="w-7 h-7 rounded-full bg-gradient-to-bl from-[#079DED] to-[#0A59EB] flex items-center justify-center text-white text-xs">
                           {i + 1}
                         </div>
                       </TableCell>
@@ -302,7 +309,7 @@ export function AttendancePage() {
                         </span>
                       </TableCell>
                       <TableCell className="text-center">
-                        <span className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm" style={{ fontWeight: 600 }}>
+                        <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#079DED/08] border border-[#079DED/30] text-[#079DED] text-sm" style={{ fontWeight: 600 }}>
                           {user.percentage}%
                         </span>
                       </TableCell>
@@ -318,8 +325,8 @@ export function AttendancePage() {
         <TabsContent value="low">
           <Card>
             <CardHeader>
-              <CardTitle className="text-[#0B1437] flex items-center gap-2">
-                <AlertTriangle className="w-5 h-5 text-red-500" />
+              <CardTitle className="text-[#000F61] flex items-center gap-2">
+                <AlertTriangle className="w-5 h-5 text-[#CA5369]" />
                 משתמשים עם נוכחות נמוכה (מתחת ל-50%)
               </CardTitle>
             </CardHeader>
@@ -328,15 +335,15 @@ export function AttendancePage() {
                 {lowAttendanceUsers.map((user, i) => (
                   <div
                     key={i}
-                    className="p-4 rounded-xl border border-red-100 bg-red-50/50"
+                    className="p-4 rounded-xl border border-[#CA5369/20] bg-[#CA5369/05]"
                   >
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                       <div>
                         <div className="flex items-center gap-2 mb-1">
-                          <span style={{ fontWeight: 600 }} className="text-[#0B1437]">
+                          <span style={{ fontWeight: 600 }} className="text-[#000F61]">
                             {user.name}
                           </span>
-                          <span className="text-red-600 text-sm" style={{ fontWeight: 700 }}>
+                          <span className="text-[#CA5369] text-sm" style={{ fontWeight: 700 }}>
                             {user.percentage}%
                           </span>
                         </div>
@@ -349,7 +356,7 @@ export function AttendancePage() {
                         </p>
                       </div>
                       <div className="sm:max-w-[320px]">
-                        <div className="flex items-start gap-2 p-2.5 rounded-lg bg-white border border-red-200">
+                        <div className="flex items-start gap-2 p-2.5 rounded-lg bg-white border border-[#CA5369/30]">
                           <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
                           <p className="text-xs text-muted-foreground leading-5">
                             {user.recommendation}
@@ -358,9 +365,9 @@ export function AttendancePage() {
                       </div>
                     </div>
                     {/* Progress bar */}
-                    <div className="mt-3 h-2 rounded-full bg-red-100 overflow-hidden">
+                    <div className="mt-3 h-2 rounded-full bg-[#CA5369/10] overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-red-400 transition-all"
+                        className="h-full rounded-full bg-[#CA5369] transition-all"
                         style={{ width: `${user.percentage}%` }}
                       />
                     </div>
@@ -375,7 +382,7 @@ export function AttendancePage() {
         <TabsContent value="engagement">
           <Card>
             <CardHeader>
-              <CardTitle className="text-[#0B1437] flex items-center gap-2">
+              <CardTitle className="text-[#000F61] flex items-center gap-2">
                 <Eye className="w-5 h-5 text-amber-500" />
                 משתמשים שלא מקפידים לצפות בקורסים מוקלטים
               </CardTitle>
@@ -385,17 +392,17 @@ export function AttendancePage() {
                 {lowEngagementUsers.map((user, i) => (
                   <div
                     key={i}
-                    className="p-4 rounded-xl border border-amber-100 bg-amber-50/50"
+                    className="p-4 rounded-xl border border-[#F08700/20] bg-[#F08700/05]"
                   >
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1 flex-wrap">
-                          <span style={{ fontWeight: 600 }} className="text-[#0B1437]">
+                          <span style={{ fontWeight: 600 }} className="text-[#000F61]">
                             {user.name}
                           </span>
                           <Badge
                             variant="outline"
-                            className="text-[10px] border-[#22D3EE] text-[#22D3EE]"
+                            className="text-[10px] border-[#079DED] text-[#079DED]"
                           >
                             {user.courseName}
                           </Badge>
@@ -405,24 +412,24 @@ export function AttendancePage() {
                           {user.email}
                         </p>
                         <p className="text-xs mt-1">
-                          <span className="text-amber-700" style={{ fontWeight: 600 }}>
+                          <span className="text-[#F08700]" style={{ fontWeight: 600 }}>
                             {user.watched} מתוך {user.total}
                           </span>{" "}
                           <span className="text-muted-foreground">שיעורים נצפו</span>
-                          <span className="text-amber-600 mr-2" style={{ fontWeight: 700 }}>
+                          <span className="text-[#F08700] mr-2" style={{ fontWeight: 700 }}>
                             ({user.percentage}%)
                           </span>
                         </p>
                         {/* Progress bar */}
-                        <div className="mt-2 h-2 rounded-full bg-amber-100 overflow-hidden max-w-xs">
+                        <div className="mt-2 h-2 rounded-full bg-[#F08700/10] overflow-hidden max-w-xs">
                           <div
-                            className="h-full rounded-full bg-amber-400 transition-all"
+                            className="h-full rounded-full bg-[#F08700] transition-all"
                             style={{ width: `${user.percentage}%` }}
                           />
                         </div>
                       </div>
                       <div className="sm:max-w-[350px]">
-                        <div className="flex items-start gap-2 p-2.5 rounded-lg bg-white border border-amber-200">
+                        <div className="flex items-start gap-2 p-2.5 rounded-lg bg-white border border-[#F08700/30]">
                           <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
                           <p className="text-xs text-muted-foreground leading-5">
                             <span style={{ fontWeight: 600 }}>אינסייט: </span>

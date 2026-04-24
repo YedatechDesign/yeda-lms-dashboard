@@ -16,7 +16,7 @@ export function MetricCard({ title, value, subtitle, icon: Icon, color = "#22D3E
       <div className="flex items-start justify-between">
         <div className="flex-1 min-w-0">
           <p className="text-sm text-muted-foreground mb-1">{title}</p>
-          <p className="text-2xl" style={{ fontWeight: 700, color: "#0B1437" }}>{value}</p>
+          <p className="text-2xl" style={{ fontWeight: 700, color: "#000F61" }}>{value}</p>
           {subtitle && (
             <p className="text-xs text-muted-foreground mt-1">{subtitle}</p>
           )}

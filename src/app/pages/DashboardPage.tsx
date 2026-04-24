@@ -34,9 +34,9 @@ import {
 } from "recharts";
 
 const COLORS = {
-  "היברידי": "#6366F1",
-  "מוקלט": "#22D3EE",
-  "פרונטלי": "#F59E0B",
+  "היברידי": "#0A59EB",
+  "מוקלט": "#079DED",
+  "פרונטלי": "#F08700",
 };
 
 const pieData = Object.entries(courseTypeBreakdown).map(([name, value]) => ({
@@ -59,7 +59,7 @@ export function DashboardPage() {
     <div className="space-y-6">
       {/* Page Title */}
       <div>
-        <h1 className="text-[#0B1437]">דשבורד כללי</h1>
+        <h1 className="text-[#000F61]">דשבורד כללי</h1>
         <p className="text-muted-foreground text-sm mt-1">סקירה כללית של פעילות הלמידה בפלטפורמה</p>
       </div>
 
@@ -69,25 +69,25 @@ export function DashboardPage() {
           title="משתמשים פעילים"
           value={overallMetrics.activeUsers}
           icon={Users}
-          color="#6366F1"
+          color="#0A59EB"
         />
         <MetricCard
           title="קורסים"
           value={overallMetrics.totalCourses}
           icon={BookOpen}
-          color="#22D3EE"
+          color="#079DED"
         />
         <MetricCard
           title="לומדות"
           value={overallMetrics.totalLearningUnits}
           icon={Layers}
-          color="#10B981"
+          color="#079DED"
         />
         <MetricCard
           title="מבחנים ותרגולים"
           value={overallMetrics.totalExams + overallMetrics.totalExercises}
           icon={GraduationCap}
-          color="#F59E0B"
+          color="#F08700"
         />
       </div>
 
@@ -97,25 +97,25 @@ export function DashboardPage() {
           title="ציון ממוצע כללי"
           value={`${overallMetrics.averageScore}%`}
           icon={Target}
-          color="#6366F1"
+          color="#0A59EB"
         />
         <MetricCard
           title="אחוז הצלחה כללי"
           value={`${overallMetrics.passRate}%`}
           icon={Trophy}
-          color={overallMetrics.passRate >= 70 ? "#10B981" : "#EF4444"}
+          color={overallMetrics.passRate >= 70 ? "#079DED" : "#CA5369"}
         />
         <MetricCard
           title="אחוז נוכחות כללי"
           value={`${overallMetrics.attendanceRate}%`}
           icon={UserCheck}
-          color="#22D3EE"
+          color="#079DED"
         />
         <MetricCard
           title="צפייה בתכנים מוקלטים"
           value={`${overallMetrics.viewingRate}%`}
           icon={Eye}
-          color="#F59E0B"
+          color="#F08700"
         />
       </div>
 
@@ -124,7 +124,7 @@ export function DashboardPage() {
         {/* Course Type Distribution */}
         <Card className="lg:col-span-1">
           <CardHeader>
-            <CardTitle className="text-[#0B1437]">התפלגות קורסים לפי סוג</CardTitle>
+            <CardTitle className="text-[#000F61]">התפלגות קורסים לפי סוג</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="h-[250px]">
@@ -168,26 +168,27 @@ export function DashboardPage() {
         {/* Exam Pass Rates */}
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle className="text-[#0B1437]">שיעורי הצלחה במבחנים</CardTitle>
+            <CardTitle className="text-[#000F61]">שיעורי הצלחה במבחנים</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-[280px]">
+            <div className="h-[300px]" dir="ltr">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={topExams} layout="vertical" margin={{ right: 10, left: 10 }}>
+                <BarChart data={topExams} layout="vertical" margin={{ right: 150, left: 10, top: 5, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" horizontal={false} />
                   <XAxis type="number" domain={[0, 100]} tickFormatter={(v) => `${v}%`} />
                   <YAxis
                     dataKey="name"
                     type="category"
-                    width={120}
-                    tick={{ fontSize: 12 }}
+                    orientation="right"
+                    width={145}
+                    tick={{ fontSize: 11, fontFamily: "'Heebo', sans-serif", fill: "#717182" }}
                   />
                   <Tooltip
                     formatter={(value: number) => `${value}%`}
                     labelStyle={{ fontFamily: "'Heebo', sans-serif" }}
                   />
-                  <Bar dataKey="passRate" name="אחוז הצלחה" fill="#6366F1" radius={[0, 4, 4, 0]} />
-                  <Bar dataKey="averageScore" name="ציון ממוצע" fill="#22D3EE" radius={[0, 4, 4, 0]} />
+                  <Bar dataKey="passRate" name="אחוז הצלחה" fill="#0A59EB" radius={[0, 4, 4, 0]} />
+                  <Bar dataKey="averageScore" name="ציון ממוצע" fill="#079DED" radius={[0, 4, 4, 0]} />
                   <Legend />
                 </BarChart>
               </ResponsiveContainer>
@@ -199,7 +200,7 @@ export function DashboardPage() {
       {/* Course List */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-[#0B1437]">רשימת קורסים</CardTitle>
+          <CardTitle className="text-[#000F61]">רשימת קורסים</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
@@ -209,7 +210,7 @@ export function DashboardPage() {
                 className="p-4 rounded-xl border bg-white hover:shadow-md transition-all"
               >
                 <div className="flex items-start justify-between mb-2">
-                  <h4 className="text-sm text-[#0B1437] leading-tight">{course.name}</h4>
+                  <h4 className="text-sm text-[#000F61] leading-tight">{course.name}</h4>
                   <Badge
                     className="mr-2 shrink-0 text-[10px]"
                     style={{
@@ -234,7 +235,7 @@ export function DashboardPage() {
       {/* Quick Insights */}
       <Card className="border-r-4 border-r-[#22D3EE]">
         <CardHeader>
-          <CardTitle className="text-[#0B1437]">סיכום מצב הלמידה</CardTitle>
+          <CardTitle className="text-[#000F61]">סיכום מצב הלמידה</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-sm leading-7 text-muted-foreground">{learningSummary}</p>

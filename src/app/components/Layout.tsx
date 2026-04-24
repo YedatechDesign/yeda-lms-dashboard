@@ -22,19 +22,9 @@ export function Layout() {
   return (
     <div dir="rtl" className="min-h-screen bg-[#f0f2f5]" style={{ fontFamily: "'Heebo', sans-serif" }}>
       {/* Header */}
-      <header className="bg-[#0B1437] text-white sticky top-0 z-50 shadow-lg">
+      <header className="bg-[#000F61] text-white sticky top-0 z-50 shadow-lg">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-bl from-[#22D3EE] to-[#6366F1] flex items-center justify-center">
-                <span className="text-white text-sm">E</span>
-              </div>
-              <span className="tracking-[0.25em] text-lg" style={{ fontFamily: "'Heebo', sans-serif", fontWeight: 300 }}>
-                ELEVATION
-              </span>
-            </div>
-
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-1">
               {navItems.map((item) => (
@@ -45,7 +35,7 @@ export function Layout() {
                   className={({ isActive }) =>
                     `flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
                       isActive
-                        ? "bg-white/15 text-[#22D3EE]"
+                        ? "bg-white/15 text-[#F08700]"
                         : "text-white/70 hover:text-white hover:bg-white/10"
                     }`
                   }
@@ -78,7 +68,7 @@ export function Layout() {
                 className={({ isActive }) =>
                   `flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
                     isActive
-                      ? "bg-white/15 text-[#22D3EE]"
+                      ? "bg-white/15 text-[#F08700]"
                       : "text-white/70 hover:text-white hover:bg-white/10"
                   }`
                 }
