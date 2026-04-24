@@ -127,18 +127,17 @@ export function DashboardPage() {
             <CardTitle className="text-[#000F61]">התפלגות קורסים לפי סוג</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-[250px]">
+            <div className="h-[220px]">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
                     data={pieData}
                     cx="50%"
                     cy="50%"
-                    innerRadius={60}
-                    outerRadius={90}
+                    innerRadius={65}
+                    outerRadius={95}
                     paddingAngle={4}
                     dataKey="value"
-                    label={({ name, value }) => `${name} (${value})`}
                   >
                     {pieData.map((entry) => (
                       <Cell
@@ -147,18 +146,20 @@ export function DashboardPage() {
                       />
                     ))}
                   </Pie>
-                  <Tooltip />
+                  <Tooltip formatter={(value, name) => [value, name]} />
                 </PieChart>
               </ResponsiveContainer>
             </div>
-            <div className="flex justify-center gap-4 mt-2">
+            <div className="flex justify-center gap-6 mt-4">
               {pieData.map((entry) => (
-                <div key={entry.name} className="flex items-center gap-1.5">
+                <div key={entry.name} className="flex items-center gap-2">
                   <div
-                    className="w-3 h-3 rounded-full"
+                    className="w-3 h-3 rounded-full shrink-0"
                     style={{ backgroundColor: COLORS[entry.name as keyof typeof COLORS] }}
                   />
-                  <span className="text-xs text-muted-foreground">{entry.name}</span>
+                  <span className="text-xs text-muted-foreground">
+                    {entry.name} <span style={{ fontWeight: 600, color: COLORS[entry.name as keyof typeof COLORS] }}>({entry.value})</span>
+                  </span>
                 </div>
               ))}
             </div>
